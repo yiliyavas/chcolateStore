@@ -1,0 +1,192 @@
+
+<!-- Yuliya Vaskiv 
+    CSC3750
+    Assignment 02
+    due 02/14/2023
+-->
+
+<!DOCTYPE html>
+
+<!-- declares that part from here is html-->
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Stint+Ultra+Expanded" rel="stylesheet">
+<meta charset="utf-8">
+<title> Lviv Handmade Chocolate - News</title>
+
+<!-- for formating the webpage with color and text features-->
+<style>
+
+    @import url(style.css);
+    </style>
+    
+    
+</head>
+    
+    <!-- opening whatever is going to be displayed on webpage-->
+   
+    
+    <!--insert picture from internet and the text that-->
+    <div id="container">
+            <header>
+                <nav>
+                <ul>
+                    <li><a href="Home-page.html">Home</a></li>
+                    <li><a href="#menu">News</a></li>
+                    <li><a href="Recipe.html">Recipe</a></li>
+                    <li><a href="Best-sellers.html">Best Sellers</a></li>
+                    <li><a href="Menu.html">Menu</a></li>
+                    <li><a href="#info-contact-location">Contact</a></li>
+                    <li><a href="#info-contact-location">Hours</a></li>
+                    <li><a href="#info-contact-location">Location</a></li>
+                    <button onclick="history.back()">Go Back</button> 
+                </ul>
+                </nav>  
+                
+            <h1><img src="media/chocolate-logo.png" alt="Lviv Handmade Chocolate"></h1>
+            <h3>News</h3>
+            <p><br>The delicious Lviv chocolate!</p>
+            </header>
+
+
+    </head>
+
+<body>
+    <div id="menu">
+    <main>
+
+
+    <!-- sets date -->
+    <p style="text-align:right;"><time datetime="2023-02-14">January 14, 2023</time></p>
+
+    <article> <!-- seprates paragraphs seperate on web by category-->
+    <h2>Special Limited Addition for Valentines Day </h2>
+    <a>Starting from this week <i>(01/14 - 02/14)</i>, <em>Lviv Handmade Chocolate</em>
+    offers special chocolate hearts in all colors. Express the love to your love ones through chocolate.
+    You can also write special message as well. For this service please <b>contact via email/phone</b> or
+    ask represenative in the store <i>(second floor)</i>. <br> 
+    <q>Bring hearts</q> </a> <br>
+    <a href="Order-form.html" style="background-color: aliceblue;color:blue">Click here to order</a>
+
+    <!-- creates table with pricing in this case-->
+    <table>
+        <caption>Table of Pricing</caption> <!--title for table-->
+        <colgroup></colgroup>
+        <colgroup span="3"></colgroup>
+
+        <thead>
+        <tr> <!--top 3 main columns-->
+            <th rowspan="2">filling \ colors </th> 
+            <th colspan="3">White Chocolate Base</th>
+            <th rowspan="2">Milk Chocolate Base  </th>
+        </tr>
+
+        <tr> <!-- other 3 columns for second column-->
+            <th>Red color</th>
+            <th>Yellow color</th>
+            <th>Gold color</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr>
+            <!--row name-->
+            <th scope="row">no filling</th>
+            <!--evrything that should follow row in column-->
+            <td>$5</td>
+            <td>$5</td>
+            <td>$6.50</td>
+            <td>$4</td>
+        </tr>
+
+        <tr>
+            <th scope="row">strawberry cheescake filling </th>
+            <td>$7</td>
+            <td>$7</td>
+            <td>$8.50</td>
+            <td>$6.50</td>
+        </tr>
+
+        <tr>
+            <th scope="row">chocolate ganache filling</th>
+            <td>$9</td>
+            <td>$9.50</td>
+            <td>$11.50</td>
+            <td>$8.50</td>
+        </tr>
+    
+
+        <tr>
+            <th>titamisu filling</th>
+            <td>$10</td>
+            <td>$10</td>
+            <td>$12</td>
+            <td>$9.50</td>
+        </tr>
+    
+    </tbody>
+</table>
+
+
+        <br> <br>
+    </article>
+
+
+
+    <!-- second paragraph-->
+    <p style="text-align:right;"><time datetime="2023-02-01">February 01, 2023</time></p>
+    
+    <article >
+
+        <picture> 
+            <source media="(min-width: 480px)" 
+            srcset= "https://media-cdn.tripadvisor.com/media/photo-s/0b/7e/7b/4a/lwow-kawa-i-deser.jpg 800w"
+            sizes = "80vm">
+        <img src="https://media-cdn.tripadvisor.com/media/photo-s/0b/7e/7b/4a/lwow-kawa-i-deser.jpg"
+            alt="coffee with cake on table">
+        </picture>
+    <h2>Limited hours on Monday <i>(02/06/2023)</i></h2>
+    <a>Unfortunely, on moday <em>Lviv Handmade Chocolate</em> would be closed for annual maintanance. We will be back 
+    next day to keep bringing hapiness for chacolate fans. <b>Remember Valentines Day is around the corner</b>.<br> 
+    <q>Bring hearts</q> </a> <br>
+    <br><br>
+
+    
+    <!-- accesing and displaying picture but modifying picture size according to size of web window-->
+    
+
+    </article>
+</div>
+    </main>
+
+    
+    <!--additional info-->
+    <aside id="info-contact-location">
+        <h3>Contact</h3>
+        <a><i>
+            <a href="mailto:lvivhandmadechocolate@mail.ua ">email</a> <br>
+            <a href="callto:+38 (093)51-44-224">+38 (093)51-44-224 </a>
+        </i></a>
+    
+    
+        <h3>Days and Hours</h3>
+        <a>MON-SUN 10AM - 8 PM</a>
+    
+        <h3>Location</h3>
+        <a><i>Serbska St. 3 <br> 
+            Lviv, Ukraine </i><br> 
+        </a>
+    </aside>
+    
+    <footer>
+        <p><small>All content copyright &copy; 2023, <a href="">Lviv Handmade Chocolate</a></small></p>
+          <div id="award"> 
+            <img src="Lviv-logo.png" alt="Lviv Tourist Logo" style="width: 100px; height:100px;"> 
+          </div> 
+        </footer>
+
+    
+
+</body>
+
+</html>

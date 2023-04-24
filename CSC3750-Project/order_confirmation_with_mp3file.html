@@ -1,0 +1,94 @@
+
+<!-- Yuliya Vaskiv 
+    CSC3750
+    Assignment 03
+    order_confirmation_with_mp3file
+    due 03/03/2023
+-->
+
+<!DOCTYPE html>
+
+<!-- declares that part from here is html-->
+<html>
+<head>
+
+<!-- link for formating the webpage with color and text features-->
+<link href="https://fonts.googleapis.com/css?family=Stint+Ultra+Expanded" rel="stylesheet">
+<meta charset="utf-8">
+<title> Lviv Handmade Chocolate - Confirmation </title>
+<style>
+  @import url(style.css);
+</style>
+  </head>
+  
+  <body>
+    <div id="container">
+  <header>
+    <nav>
+      <ul>
+        <li><a href="Home-page.html">Home</a></li>
+            <li><a href="News.html">News</a></li>
+            <li><a href="Recipe.html">Recipe</a></li>
+            <li><a href="Best-sellers.html">Best Sellers</a></li>
+            <li><a href="Menu.html">Menu</a></li>
+            <li><a href="#info-contact-location">Contact</a></li>
+            <li><a href="#info-contact-location">Hours</a></li>
+            <li><a href="#info-contact-location">Location</a></li>
+            <button onclick="history.back()">Go Back</button> 
+      </ul>
+    </nav>  
+    <h1><img src="media/chocolate-logo.png" alt="Lviv Handmade Chocolate"></h1>
+    <h3>Order Confirmed</h3>
+    <p><br>The delicious Lviv chocolate!</p>
+  </header>
+
+
+  <div id="menu">
+  <main>
+    <!-- confirmation statement -->
+    <h2>Your Order has been placed</h2>
+
+    <!--inserts video file-->
+    <video id="video" controls width="620" height="600" >        
+        <source src="media/doves_walk.MP4" type="video/mp4">
+              
+        Your browser doesn't support HTML5 video. Sorry.
+      </video>
+    
+    <div id="status" role = "alert"></div>
+    <p>We know you wait like those pigeons on Lviv paving to get your order. <br> 
+    <em>Wait until we will contact you about your order!</em> </p> </div>
+
+    </main>
+
+    <!--additional info-->
+    <aside id="info-contact-location">
+        <h3>Contact</h3>
+        <a><i>
+            <a href="mailto:lvivhandmadechocolate@mail.ua ">email</a> <br>
+            <a href="callto:+38 (093)51-44-224">+38 (093)51-44-224 </a>
+        </i></a>
+    
+    
+        <h3>Days and Hours</h3>
+        <a>MON-SUN 10AM - 8 PM</a>
+    
+        <h3>Location</h3>
+        <a><i>Serbska St. 3 <br> 
+            Lviv, Ukraine </i><br> 
+        </a>
+    </aside>
+    
+    <br>
+    
+    <footer>
+    <p><small>All content copyright &copy; 2023, <a href="">Lviv Handmade Chocolate</a></small></p>
+      <div id="award"> 
+        <img src="Lviv-logo.png" alt="Lviv Tourist Logo" style="width: 100px; height:100px;"> 
+      </div> 
+    </footer>
+    
+</div>
+</body>
+
+</html>

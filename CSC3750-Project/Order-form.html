@@ -1,0 +1,145 @@
+
+<!-- Yuliya Vaskiv 
+    CSC3750
+    Assignment 03
+    due 03/03/2023
+-->
+
+<!DOCTYPE html>
+
+<!-- declares that part from here is html-->
+<html>
+<head>
+
+<!-- link for formating the webpage with color and text features-->
+<link href="https://fonts.googleapis.com/css?family=Stint+Ultra+Expanded" rel="stylesheet">
+<meta charset="utf-8">
+<title> Lviv Handmade Chocolate - Order Form </title>
+
+<style>
+  @import url(style.css);
+</style>
+  </head>
+  
+  <body>
+    <div id="container">
+  <header>
+    <nav>
+      <ul>
+        <li><a href="Home-page.html">Home</a></li>
+            <li><a href="News.html">News</a></li>
+            <li><a href="Recipe.html">Recipe</a></li>
+            <li><a href="Best-sellers.html">Best Sellers</a></li>
+            <li><a href="Menu.html">Menu</a></li>
+            <li><a href="#info-contact-location">Contact</a></li>
+            <li><a href="#info-contact-location">Hours</a></li>
+            <li><a href="#info-contact-location">Location</a></li>
+            <button onclick="history.back()">Go Back</button> 
+      </ul>
+    </nav>  
+    <h1><img src="media/chocolate-logo.png" alt="Lviv Handmade Chocolate"></h1>
+    <h3>Order Form</h3>
+    <p><br>The delicious Lviv chocolate!</p>
+  </header>
+
+<body>
+    
+  <div id="menu">
+<main id="centralize">
+
+    <!-- sets date -->
+    <p style="text-align: right;"><small>last updated <time datetime="2023-02-28">February 28, 2023</time></small></p>
+    <h2>Personal Info</h2>
+
+
+    <!-- open the form -->
+    <form action="order_confirmation_with_mp3file.html" method="post">
+  
+         <!--user types text as input-->
+          <h4><label for="form-name">Name:</label> <input type="text" name="customername" id="form-name"></h4>
+          <h4><label for="form-address">Address:</label> <input type="text" name="address" id="form-address"></h4>
+          <h4><label for="form-tel">Telephone Number:</label> <input type="tel" name="telephone" id="form-tel"></h4>
+          <h4><label for="form-email">Email: <input type="email" name="email" id="form-email"></label></h4>
+          <h4>Special Requests for order:<br>
+          <textarea name="instructions" rows="4" cols="60" maxlength="400" id="form-story" placeholder="No more than 400 characters long"></textarea></h4>
+
+          <h4> Order Option:
+            <select name="order option" size="1"> <!--scroll menu-->
+              <option>Delivery</option>
+              <option>Pick Up in Store</option>
+              <option>Curb Pick Up</option>
+              <option>Contactless Pick Up</option>
+            </select>
+          </h4>
+
+
+      
+        
+        
+
+      <h2>Design your dream chocolate heart:</h2>
+
+ <!--another box-->
+  <fieldset>
+    <legend>Chocolate Color <em>(Choose one)</em>:</legend>
+    <ul> <!--choose one option-->
+      <li><label><input type="radio" name="color" value="red"> Red color</label></li>
+      <li><label><input type="radio" name="color" value="yellow"> Yellow color</label></li>
+      <li><label><input type="radio" name="color" value="gold"> Gold color</label></li>
+      <li><label><input type="radio" name="color" value="normal/browm"> Normal/brown</label></li>
+    </ul>
+  </fieldset>
+
+  <fieldset>
+  <legend>Fillings <em>(Choose as many as you want)</em></legend>
+    <ul> <!--choose multiple options-->
+      <li><label><input type="checkbox" name="filling[]" value="none" checked> no filling</label></li>
+      <li><label><input type="checkbox" name="filling[]" value="cheescake"> strawberry cheescake</label></li>
+      <li><label><input type="checkbox" name="filling[]" value="ganache"> chocolate ganache</label></li>
+      <li><label><input type="checkbox" name="filling[]" value="tiramisu"> tiramisu</label></li>
+    </ul>
+  </fieldset>
+
+
+
+
+<!--two buttons-->
+<p> <input type="submit" value="Submit Form" > 
+  <input type="reset"></p>
+</form>
+
+    
+</main>
+</div>
+
+    <!--additional info-->
+    <aside id="info-contact-location">
+      <h3>Contact</h3>
+      <a><i>
+        <a href="mailto:lvivhandmadechocolate@mail.ua ">email</a> <br>
+        <a href="callto:+38 (093)51-44-224">+38 (093)51-44-224 </a>
+      </i></a>
+  
+  
+      <h3>Days and Hours</h3>
+      <a>MON-SUN 10AM - 8 PM</a>
+  
+      <h3>Location</h3>
+      <a><i>Serbska St. 3 <br> 
+          Lviv, Ukraine </i><br> 
+      </a>
+  </aside>
+  
+  <br>
+  
+  <footer>
+  <p><small>All content copyright &copy; 2023, <a href="">Lviv Handmade Chocolate</a></small></p>
+    <div id="award"> 
+      <img src="Lviv-logo.png" alt="Lviv Tourist Logo" style="width: 100px; height:100px;"> 
+    </div> 
+  </footer>
+  
+
+</body>
+
+</html>

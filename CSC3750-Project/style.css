@@ -1,0 +1,456 @@
+@charset "UTF-8";
+/* sources 
+    https://www.w3schools.com/html/html_formatting.asp
+    https://www.tutorialspoint.com/html/html_email_links.htm
+*/
+html {
+  box-sizing: border-box;
+}
+* {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: Georgia, serif;
+  font-size: 100%;
+  background-color: white;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  border-bottom: 1px dotted;
+  padding-bottom: .2em;
+}
+
+
+
+/* header styles */
+header {
+  color: white;
+  background-size: cover; 
+  text-align: center;
+  height: 50em;
+  
+}
+header p {
+  font-style: italic;
+  font-size: 1.2em;
+  margin-top: -12px;
+  color: #FFF4E0;
+}
+header h1 {
+  margin-top: 2em;
+}
+
+
+
+
+/* nav styles */
+nav, header {
+  font-family: verdana, sans-serif;
+  background-image: linear-gradient(120deg, #F9AB 25%, #5a1304);
+  
+}
+nav ul {
+  margin: 0;
+  padding: 0;
+  /*added for flexbox*/
+  list-style-type: none;
+  display: flex; 
+  justify-content: center;
+}
+nav ul li {
+  font-size: .8em;
+  text-transform: uppercase;
+  letter-spacing: .2em;
+    /*added for flexbox*/
+    list-style-type: none;
+    display: flex; 
+    justify-content: center;
+}
+
+/*added for flexbox*/
+nav ul li a {
+  display: block;
+  border: 1px solid;
+  border-radius: .5em;
+  padding: .5em 1em;
+  margin: .5em;
+  
+}
+
+
+
+
+/* main "products" styles */
+main {
+  font-family: 'Stint Ultra Expanded', Georgia, serif;
+  background-color: #F6F3ED;
+  line-height: 1.8em;
+  color: #555;
+  padding: 1em;
+  border: solid 8px #ac847c;
+  border-radius: 50px;
+  margin: 2.5%;
+}
+h2 {
+  font-family: 'Stint Ultra Expanded', Georgia, serif;
+  
+  letter-spacing: 6px;
+  color: #9a6c58;
+  border-radius: 10em;
+  background-color: #f4ead9;
+  text-align: center;
+
+}
+h3 {
+  text-transform: uppercase;
+  letter-spacing: .2em;
+  color: #7d080a;
+  
+  padding-left: 1em;
+  margin-top: 2.5em;
+}
+p.more {
+  font-family: verdana, sans-serif;
+  text-transform: uppercase; 
+  font-size: .8em;
+  clear: left;
+}
+
+
+
+
+
+/*footer*/
+footer {
+  color: #e1c4c4;
+  text-align: right;
+  font-size: .8em;
+  padding: 1em;
+  background-color: #5a1304;
+}
+header, nav ul {
+  font-family: verdana, sans-serif;
+  background-color: #5a1304;
+  
+}
+
+nav ul li {
+  list-style-type: none;
+  display: flex; 
+  justify-content: center;
+}
+
+nav ul li a {
+  display: block;
+  border: 1px solid;
+  border-radius: .5em;
+  padding: .5em 1em;
+  margin: .5em;
+  
+}
+
+
+
+
+/*links */
+nav ul li a:link, nav ul li a:visited {
+  color: #9a6c58;
+}
+nav ul li a:focus, nav ul li a:hover, nav ul li a:active {
+  color: #fff;
+}
+
+
+
+/*img*/
+main img {
+  float: left;
+  margin: 0 1em 1em 0;
+}
+
+img[src*="spartak"] {
+  height: 500px;
+}
+
+img[src*="Chocolate"] {
+  height: 250px;  
+}
+
+img[src*="chocolate-logo"] {
+    height: 400px;
+  }
+img[src*="http"]{
+  height: 150px;
+  border-radius: 50%;
+}
+
+#award { 	 /*fixed  logo*/
+  position: fixed; 	
+  width: 30px;
+  height: 30px;
+  bottom: 100px; 	
+  right: 100px;
+
+}
+
+
+
+
+/*the bottom*/
+aside {
+  
+  background-image: linear-gradient(#F6F3ED, white);
+  /*padding: 1em;
+  padding-left: 50px;
+  border-top-right-radius: 100px;
+  border-top-left-radius: 100px;
+  margin: 5em 2.5% 0 10%;*/
+  padding: 1em;
+  padding-left: 50px;
+  height:500px;
+  width: 80%;
+ 
+  
+  display: inline-block;
+  text-align: center;
+  margin: 5em 2.5% 0 10%;
+
+  border-radius: 50%;
+}
+
+
+
+/*for flexbox organization*/
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+
+#menu {
+  border: 3px solid #783F27;
+  display: flex;
+  align-items: stretch;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+section {
+  background: #F6F3ED;
+  margin: 10px;
+  padding: 20px;
+  border: 1px dotted maroon;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+}
+#recipe-guide {
+  background-image: linear-gradient(120deg, #F9AB 25%, #783F27);
+  color: #13110f;
+  line-height: 4em;
+}
+.scroll-up{
+  font-weight: bold;
+  background: #FFF4E0;;
+  padding: 5px;
+  width: 100%;
+  text-align: center;
+  margin-top: auto;
+}
+
+.photo {
+  width: 100px;
+  border-radius: 50%;
+}
+
+img[src*="https://media-cdn.tripadvisor.com/media/photo-"] {
+  height: 150px;
+  border-radius: 50%;
+}
+
+img[src*="https://klopotenko.com"] {
+  height: 150px;
+  border-radius: 50%;
+}
+
+img[src*="https://images.healthshots.com/"] {
+  height: 150px;
+  border-radius: 50%;
+}
+
+img[src*="https://i.pinimg.com/"] {
+  height: 150px;
+  border-radius: 50%;
+}
+
+img[src*="https://www.tasteofhome.com"] {
+  height: 150px;
+  border-radius: 50%;
+}
+
+img[src*="https://cdn.momsdish.com/wp-content/"] {
+  height: 150px;
+  border-radius: 50%;
+}
+
+img[src*="https://www.kingarthurbaking.com/sites/defau"] {
+  height: 150px;
+  border-radius: 50%;
+}
+
+img[src*="https://thesaltedpepper.com/wp-content/uploa"] {
+  height: 150px;
+  border-radius: 50%;
+}
+
+img[src*="https://www.crushpixel.com/big-static15/pre"] {
+  height: 150px;
+  border-radius: 50%;
+}
+
+img[src*="Easy-Farmers-Cheese"] {
+  transform: rotate(180deg);
+  height: 150px;
+  width: 220px;
+  border-radius: 50%;
+}
+img[src*="handmade-chocolate-sweets-lviv-s-shop-ukraine"]{
+  height: 200px;
+}
+
+
+
+/*home page response*/
+
+@media screen and (min-width: 600px) {
+  header p {
+    display: block;
+    margin-top: -1.5em;
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-size: 1.2em;
+  }
+  main, h2, h3 {
+    font-family: 'Stint Ultra Expanded', Georgia, serif; 
+  }
+  h2, h3 {
+    font-weight: bold;
+  }
+  main {
+    line-height: 1.8em;
+    padding: 1em;
+    border: solid 4px #ac847c;
+    border-radius: 25px;
+    margin: 2.5%; 
+  }
+}
+
+
+
+
+@media screen and (min-width: 940px) {
+  #container {
+    display: grid;
+    grid-template-rows: auto min-height 5em;
+    grid-template-columns: minmax(25em, 1fr) 16em;
+    grid-template-areas: 
+      "banner banner"
+      "main hours"
+      "footer footer";
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+  }
+  header {
+    grid-area: banner;
+  }
+  main {
+    grid-area: main;
+  }
+  aside {
+    grid-area: hours;
+    background-image: linear-gradient(#F6F3ED, white);
+    padding: 1em;
+    padding-left: 10px;
+    text-align: center;
+    border-radius: 50%;
+  }
+  aside a{
+    text-align: right;
+    size: 1.1em;
+  }
+  footer {
+    grid-area: footer;
+  }
+
+} 
+
+
+.date-of{
+  text-align: right;
+}
+
+
+table, td, th {
+  text-align: center;
+  border: 1px solid gray;
+  background-color: tan;
+  margin-left: auto;
+  margin-right: auto;
+}
+td {
+  background-color: azure;
+}
+
+
+
+fieldset{
+  border-radius: 25em;
+  text-align: center;
+}
+
+#centralize{
+  text-align: center;
+}
+
+input, textarea, select[name*="order option"], select[type="radio"]{
+  font-size: 20px;
+  background-color:#f4ead9;
+  border-radius: 10px;
+}
+
+input[value*="Submit Form"] {
+  background-color: #5a1304;
+  color: #f4ead9;
+  font-size: 25px;
+  border-radius: 50px;
+}
+
+input[type*="reset"]{
+  background-color: #5a1304;
+  color: #f4ead9;
+  font-size: 25px;
+  border-radius: 50px;
+}
+header button{
+  background-color: #5a1304;
+  color: #f4ead9;
+  font-size: 15px;
+  border-radius: 50px;
+  text-align: left;
+}
+
+label{
+  font-size: 20px;
+  border-radius: 10px;
+}
+
+
+.row {
+  display: flex;
+}
+
+.column {
+  flex: 75%;
+}
