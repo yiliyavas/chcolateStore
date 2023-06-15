@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Form to Excel</title>
+  <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+  
+</head>
+<body>
+
+    
+  <form id="dataForm">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required />
+
+    <label for="age">Age:</label>
+    <input type="number" id="age" name="age" required />
+
+    <input type="submit" value="Submit" />
+
+    <script>
+        document.getElementById("dataForm").addEventListener("submit", handleSubmit, false);
+    
+        function handleSubmit(e) {
+          e.preventDefault();
+    
+          // Get the form data
+          var name = document.getElementById("name").value;
+          var age = document.getElementById("age").value;
+    
+          // Create a new workbook
+          var workbook = XLSX.utils.book_new();
+    
+          // Create a new worksheet
+          var worksheet = XLSX.utils.json_to_sheet([{ Name: name, Age: age }]);
+    
+          // Add the worksheet to the workbook
+          XLSX.utils.book_append_sheet(workbook, worksheet, "Data");
+    
+          // Convert the workbook to an Excel file
+          var excelFile = XLSX.write(workbook, { bookType: "xlsx", type: "array" });
+    
+          // Save the Excel file
+          saveExcelFile(excelFile, "data.xlsx");
+        }
+    
+        function saveExcelFile(data, filename) {
+          var blob = new Blob([data], { type: "application/octet-stream" });
+          var url = window.URL.createObjectURL(blob);
+          var a = document.createElement("a");
+          a.href = url;
+          a.download = filename;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          window.URL.revokeObjectURL(url);
+        }
+      </script>
+  </form>
+</body>
+</html>
