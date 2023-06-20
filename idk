@@ -6,6 +6,33 @@
   <script>
     var data = [];
 
+    // Fetch the options from a text file
+    function fetchOptions() {
+      fetch("options.txt")
+        .then(response => response.text())
+        .then(data => {
+          var options = data.split("\n");
+          populateOptions(options);
+        })
+        .catch(error => console.log(error));
+    }
+
+    // Populate the dropdown options
+    function populateOptions(options) {
+      var select = document.getElementById("gender");
+      select.innerHTML = "";
+
+      options.forEach(option => {
+        var optionElement = document.createElement("option");
+        optionElement.value = option.trim();
+        optionElement.textContent = option.trim();
+        select.appendChild(optionElement);
+      });
+    }
+
+    // Call the fetchOptions function when the page is loaded
+    document.addEventListener("DOMContentLoaded", fetchOptions);
+
     function addRow() {
       var name = document.getElementById("name").value;
       var age = document.getElementById("age").value;
@@ -20,7 +47,6 @@
       // Clear the form fields
       document.getElementById("name").value = "";
       document.getElementById("age").value = "";
-      document.getElementById("gender").value = "male";
 
       // Display the updated data in a table
       displayData();
@@ -83,8 +109,7 @@
 
     <label for="gender">Gender:</label>
     <select id="gender">
-      <option value="male">Male</option>
-      <option value="female">Female</option>
+      <!-- Options will be populated dynamically -->
     </select>
 
     <button type="button" onclick="addRow()">Add Row</button>
