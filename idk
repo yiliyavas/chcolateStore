@@ -1,60 +1,88 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Form to Excel</title>
+  <title>Add Row to Excel</title>
   <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
-  
+  <script>
+    var data = [];
+
+    function addRow() {
+      var name = document.getElementById("name").value;
+      var age = document.getElementById("age").value;
+
+      // Create a new row
+      var newRow = [name, age];
+
+      // Add the new row to the data array
+      data.push(newRow);
+
+      // Clear the form fields
+      document.getElementById("name").value = "";
+      document.getElementById("age").value = "";
+
+      // Display the updated data in a table
+      displayData();
+    }
+
+    function displayData() {
+      var table = document.getElementById("dataTable");
+      table.innerHTML = "";
+
+      // Create the table header row
+      var headerRow = document.createElement("tr");
+      headerRow.innerHTML = "<th>Name</th><th>Age</th>";
+      table.appendChild(headerRow);
+
+      // Add rows to the table
+      for (var i = 0; i < data.length; i++) {
+        var row = document.createElement("tr");
+        row.innerHTML = "<td>" + data[i][0] + "</td><td>" + data[i][1] + "</td>";
+        table.appendChild(row);
+      }
+    }
+
+    function exportToExcel() {
+      // Create a new workbook
+      var workbook = XLSX.utils.book_new();
+
+      // Create a new worksheet
+      var worksheet = XLSX.utils.aoa_to_sheet(data);
+
+      // Add the worksheet to the workbook
+      XLSX.utils.book_append_sheet(workbook, worksheet, "Data");
+
+      // Convert the workbook to an Excel file
+      var excelFile = XLSX.write(workbook, { bookType: "xlsx", type: "array" });
+
+      // Save the Excel file
+      saveExcelFile(excelFile, "data.xlsx");
+    }
+
+    function saveExcelFile(data, filename) {
+      var blob = new Blob([data], { type: "application/octet-stream" });
+      var url = window.URL.createObjectURL(blob);
+      var a = document.createElement("a");
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+    }
+  </script>
 </head>
 <body>
-
-    
-  <form id="dataForm">
+  <form>
     <label for="name">Name:</label>
-    <input type="text" id="name" name="name" required />
+    <input type="text" id="name" required />
 
     <label for="age">Age:</label>
-    <input type="number" id="age" name="age" required />
+    <input type="number" id="age" required />
 
-    <input type="submit" value="Submit" />
-
-    <script>
-        document.getElementById("dataForm").addEventListener("submit", handleSubmit, false);
-    
-        function handleSubmit(e) {
-          e.preventDefault();
-    
-          // Get the form data
-          var name = document.getElementById("name").value;
-          var age = document.getElementById("age").value;
-    
-          // Create a new workbook
-          var workbook = XLSX.utils.book_new();
-    
-          // Create a new worksheet
-          var worksheet = XLSX.utils.json_to_sheet([{ Name: name, Age: age }]);
-    
-          // Add the worksheet to the workbook
-          XLSX.utils.book_append_sheet(workbook, worksheet, "Data");
-    
-          // Convert the workbook to an Excel file
-          var excelFile = XLSX.write(workbook, { bookType: "xlsx", type: "array" });
-    
-          // Save the Excel file
-          saveExcelFile(excelFile, "data.xlsx");
-        }
-    
-        function saveExcelFile(data, filename) {
-          var blob = new Blob([data], { type: "application/octet-stream" });
-          var url = window.URL.createObjectURL(blob);
-          var a = document.createElement("a");
-          a.href = url;
-          a.download = filename;
-          document.body.appendChild(a);
-          a.click();
-          document.body.removeChild(a);
-          window.URL.revokeObjectURL(url);
-        }
-      </script>
+    <button type="button" onclick="addRow()">Add Row</button>
+    <button type="button" onclick="exportToExcel()">Export to Excel</button>
   </form>
+
+  <table id="dataTable"></table>
 </body>
 </html>
