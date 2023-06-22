@@ -4,21 +4,24 @@
   <title>User Input with Scrolling Options</title>
   <script>
     function loadOptions() {
-      // Read the text file and populate the scrolling options
-      fetch('options.txt')
-        .then(response => response.text())
-        .then(data => {
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', 'options.txt', true);
+
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          var data = xhr.responseText;
           var options = data.split('\n');
           var select = document.getElementById('optionsSelect');
 
-          // Add options to the select element
           options.forEach(option => {
             var optionElement = document.createElement('option');
             optionElement.textContent = option;
             select.appendChild(optionElement);
           });
-        })
-        .catch(error => console.log(error));
+        }
+      };
+
+      xhr.send();
     }
 
     function processInput() {
