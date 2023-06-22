@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>User Input with Scrolling Options</title>
+<!-- (powershell -command "Get-Clipboard | Sort-Object | Get-Unique | Set-Clipboard")-->
   <script>
     function loadOptions() {
       var xhr = new XMLHttpRequest();
