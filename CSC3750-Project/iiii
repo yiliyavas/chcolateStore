@@ -1,21 +1,28 @@
 function readTextFile(file, callback) {
-  fetch(file)
-    .then(response => response.text())
-    .then(data => {
-      // Split the file contents into an array
-      var lines = data.split('\n');
-      
-      // Remove any empty lines
-      lines = lines.filter(line => line.trim() !== '');
+  var reader = new FileReader();
 
-      // Call the callback function with the array of lines
-      callback(lines);
-    })
-    .catch(error => console.log(error));
+  reader.onload = function(event) {
+    var contents = event.target.result;
+    var lines = contents.split('\n');
+
+    // Remove any empty lines
+    lines = lines.filter(line => line.trim() !== '');
+
+    // Call the callback function with the array of lines
+    callback(lines);
+  };
+
+  reader.readAsText(file);
 }
 
 // Usage example
-readTextFile('example.txt', function(lines) {
-  console.log(lines);
-  // Use the lines array here
+var fileInput = document.getElementById('fileInput'); // Assuming you have an input element of type "file" with id "fileInput"
+
+fileInput.addEventListener('change', function(event) {
+  var file = event.target.files[0];
+
+  readTextFile(file, function(lines) {
+    console.log(lines);
+    // Use the lines array here
+  });
 });
