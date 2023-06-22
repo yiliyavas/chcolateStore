@@ -1,28 +1,43 @@
-function readTextFile(file, callback) {
-  var reader = new FileReader();
+<!DOCTYPE html>
+<html>
+<head>
+  <title>User Input with Scrolling Options</title>
+  <script>
+    function loadOptions() {
+      // Read the text file and populate the scrolling options
+      fetch('options.txt')
+        .then(response => response.text())
+        .then(data => {
+          var options = data.split('\n');
+          var select = document.getElementById('optionsSelect');
 
-  reader.onload = function(event) {
-    var contents = event.target.result;
-    var lines = contents.split('\n');
+          // Add options to the select element
+          options.forEach(option => {
+            var optionElement = document.createElement('option');
+            optionElement.textContent = option;
+            select.appendChild(optionElement);
+          });
+        })
+        .catch(error => console.log(error));
+    }
 
-    // Remove any empty lines
-    lines = lines.filter(line => line.trim() !== '');
+    function processInput() {
+      var selectedOption = document.getElementById('optionsSelect').value;
+      console.log('Selected option:', selectedOption);
 
-    // Call the callback function with the array of lines
-    callback(lines);
-  };
-
-  reader.readAsText(file);
-}
-
-// Usage example
-var fileInput = document.getElementById('fileInput'); // Assuming you have an input element of type "file" with id "fileInput"
-
-fileInput.addEventListener('change', function(event) {
-  var file = event.target.files[0];
-
-  readTextFile(file, function(lines) {
-    console.log(lines);
-    // Use the lines array here
-  });
-});
+      // Perform further processing with the selected option
+      // ...
+    }
+  </script>
+</head>
+<body onload="loadOptions()">
+  <h1>User Input with Scrolling Options</h1>
+  
+  <form>
+    <label for="optionsSelect">Select an option:</label>
+    <select id="optionsSelect"></select>
+    <br>
+    <button type="button" onclick="processInput()">Submit</button>
+  </form>
+</body>
+</html>
