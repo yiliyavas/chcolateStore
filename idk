@@ -1,8 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Calling JavaScript Function with Scroll Menu Selection</title>
+    <title>Dynamic Option Display</title>
     <script>
+        function showOptions() {
+            var selectElement = document.getElementById("menu");
+            var optionValue = selectElement.value;
+            
+            var additionalOptions = document.getElementById("additionalOptions");
+            
+            if (optionValue === "Option 1") {
+                additionalOptions.style.display = "block";
+            } else {
+                additionalOptions.style.display = "none";
+            }
+        }
+        
         function writeToElement(elementId) {
             var element = document.getElementById(elementId);
             if (element) {
@@ -15,11 +28,16 @@
     </script>
 </head>
 <body>
-    <select id="menu" onchange="writeToElement('output')">
+    <select id="menu" onchange="showOptions(); writeToElement('output')">
         <option value="Option 1">Option 1</option>
         <option value="Option 2">Option 2</option>
         <option value="Option 3">Option 3</option>
     </select>
+    
+    <div id="additionalOptions" style="display: none;">
+        <p>Additional options for Option 1:</p>
+        <!-- Add more input fields or options here -->
+    </div>
     
     <div id="output"></div>
 </body>
