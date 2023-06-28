@@ -7,12 +7,17 @@
             var selectElement = document.getElementById("menu");
             var optionValue = selectElement.value;
             
-            var additionalOptions = document.getElementById("additionalOptions");
+            var additionalOptionsContainer = document.getElementById("additionalOptionsContainer");
             
             if (optionValue === "Option 1") {
-                additionalOptions.style.display = "block";
+                additionalOptionsContainer.innerHTML = `
+                    <p>Additional options for Option 1:</p>
+                    <input type="text" placeholder="Option 1 Input 1">
+                    <input type="text" placeholder="Option 1 Input 2">
+                    <!-- Add more input fields or options here -->
+                `;
             } else {
-                additionalOptions.style.display = "none";
+                additionalOptionsContainer.innerHTML = '';
             }
         }
         
@@ -34,10 +39,7 @@
         <option value="Option 3">Option 3</option>
     </select>
     
-    <div id="additionalOptions" style="display: none;">
-        <p>Additional options for Option 1:</p>
-        <!-- Add more input fields or options here -->
-    </div>
+    <div id="additionalOptionsContainer"></div>
     
     <div id="output"></div>
 </body>
