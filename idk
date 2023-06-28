@@ -12,15 +12,37 @@
             if (optionValue === "Option 1") {
                 additionalOptionsContainer.innerHTML = `
                     <p>Additional options for Option 1:</p>
-                    <select>
+                    <select id="subMenu" onchange="showSubOptions();">
+                        <option value="">Select an option</option>
                         <option value="Option 1A">Option 1A</option>
                         <option value="Option 1B">Option 1B</option>
                         <option value="Option 1C">Option 1C</option>
                     </select>
-                    <!-- Add more select options here -->
+                    <div id="subOptionsContainer"></div>
                 `;
             } else {
                 additionalOptionsContainer.innerHTML = '';
+            }
+        }
+        
+        function showSubOptions() {
+            var selectElement = document.getElementById("subMenu");
+            var optionValue = selectElement.value;
+            
+            var subOptionsContainer = document.getElementById("subOptionsContainer");
+            
+            if (optionValue === "Option 1A") {
+                subOptionsContainer.innerHTML = `
+                    <p>Additional options for Option 1A:</p>
+                    <select>
+                        <option value="SubOption 1A1">SubOption 1A1</option>
+                        <option value="SubOption 1A2">SubOption 1A2</option>
+                        <option value="SubOption 1A3">SubOption 1A3</option>
+                    </select>
+                    <!-- Add more sub-options here -->
+                `;
+            } else {
+                subOptionsContainer.innerHTML = '';
             }
         }
         
