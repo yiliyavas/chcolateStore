@@ -18,17 +18,20 @@
                 var worksheet = workbook.Sheets[workbook.SheetNames[0]];
                 var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
                 
-                var searchResult = '';
+                var searchResults = [];
                 for (var i = 0; i < jsonData.length; i++) {
                     if (jsonData[i][0] == userInput) {
-                        searchResult = jsonData[i];
-                        break;
+                        searchResults.push(jsonData[i]);
                     }
                 }
                 
                 var result = document.getElementById("result");
-                if (searchResult !== '') {
-                    result.innerHTML = searchResult.join(' -> ');
+                if (searchResults.length > 0) {
+                    var resultHtml = "";
+                    for (var j = 0; j < searchResults.length; j++) {
+                        resultHtml += searchResults[j].join(', ') + "<br>";
+                    }
+                    result.innerHTML = resultHtml;
                 } else {
                     result.innerHTML = 'No matching result found.';
                 }
