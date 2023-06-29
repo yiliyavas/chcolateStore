@@ -1,71 +1,51 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Dynamic Option Display</title>
+    <title>Excel Search</title>
+    <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
     <script>
-        function showOptions() {
-            var selectElement = document.getElementById("menu");
-            var optionValue = selectElement.value;
+        function searchExcel() {
+            var userInput = document.getElementById("searchInput").value;
             
-            var additionalOptionsContainer = document.getElementById("additionalOptionsContainer");
+            var fileInput = document.getElementById("fileInput");
+            var file = fileInput.files[0];
+            var reader = new FileReader();
             
-            if (optionValue === "Option 1") {
-                additionalOptionsContainer.innerHTML = `
-                    <p>Additional options for Option 1:</p>
-                    <select id="subMenu" onchange="showSubOptions();">
-                        <option value="">Select an option</option>
-                        <option value="Option 1A">Option 1A</option>
-                        <option value="Option 1B">Option 1B</option>
-                        <option value="Option 1C">Option 1C</option>
-                    </select>
-                    <div id="subOptionsContainer"></div>
-                `;
-            } else {
-                additionalOptionsContainer.innerHTML = '';
-            }
-        }
-        
-        function showSubOptions() {
-            var selectElement = document.getElementById("subMenu");
-            var optionValue = selectElement.value;
+            reader.onload = function(e) {
+                var data = new Uint8Array(e.target.result);
+                var workbook = XLSX.read(data, { type: 'array' });
+                
+                var worksheet = workbook.Sheets[workbook.SheetNames[0]];
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+                
+                var searchResult = '';
+                for (var i = 0; i < jsonData.length; i++) {
+                    if (jsonData[i][0] == userInput) {
+                        searchResult = jsonData[i];
+                        break;
+                    }
+                }
+                
+                var result = document.getElementById("result");
+                if (searchResult !== '') {
+                    result.innerHTML = searchResult.join(' -> ');
+                } else {
+                    result.innerHTML = 'No matching result found.';
+                }
+            };
             
-            var subOptionsContainer = document.getElementById("subOptionsContainer");
-            
-            if (optionValue === "Option 1A") {
-                subOptionsContainer.innerHTML = `
-                    <p>Additional options for Option 1A:</p>
-                    <select>
-                        <option value="SubOption 1A1">SubOption 1A1</option>
-                        <option value="SubOption 1A2">SubOption 1A2</option>
-                        <option value="SubOption 1A3">SubOption 1A3</option>
-                    </select>
-                    <!-- Add more sub-options here -->
-                `;
-            } else {
-                subOptionsContainer.innerHTML = '';
-            }
-        }
-        
-        function writeToElement(elementId) {
-            var element = document.getElementById(elementId);
-            if (element) {
-                var selectedValue = document.getElementById("menu").value;
-                element.innerHTML = selectedValue;
-            } else {
-                console.error("Element with ID " + elementId + " not found.");
-            }
+            reader.readAsArrayBuffer(file);
         }
     </script>
 </head>
 <body>
-    <select id="menu" onchange="showOptions(); writeToElement('output')">
-        <option value="Option 1">Option 1</option>
-        <option value="Option 2">Option 2</option>
-        <option value="Option 3">Option 3</option>
-    </select>
-    
-    <div id="additionalOptionsContainer"></div>
-    
-    <div id="output"></div>
+    <h1>Excel Search</h1>
+    <form onsubmit="event.preventDefault(); searchExcel();">
+        <label for="searchInput">Search:</label>
+        <input type="text" id="searchInput" required>
+        <input type="file" id="fileInput" required>
+        <button type="submit">Search</button>
+    </form>
+    <div id="result"></div>
 </body>
 </html>
