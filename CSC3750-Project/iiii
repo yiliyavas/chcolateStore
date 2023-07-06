@@ -1,47 +1,20 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>User Input with Scrolling Options</title>
-<!-- (powershell -command "Get-Clipboard | Sort-Object | Get-Unique | Set-Clipboard")-->
-  <script>
-    function loadOptions() {
-      var xhr = new XMLHttpRequest();
-      xhr.open('GET', 'options.txt', true);
+function displayJsonToHtmlTable(jsonData) {
+  var table = document.getElementById("display_excel_data");
 
-      xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-          var data = xhr.responseText;
-          var options = data.split('\n');
-          var select = document.getElementById('optionsSelect');
+  if (jsonData.length > 0) {
+    var htmlData = '<tr><th>DEPT</th><th>BUSINESS</th><th>SUB_BUSINESS</th><th>KEY_CONTACT</th><th>UTILITY</th><th>HOLIDAY_DNIS</th><th>HOLIDAY_DATE</th><th>HOLIDAY_HOURS</th><th>HOLIDAY_EXIT_PNT_NUM</th><th>EXT_SERVICE_IND</th><th>STATUS\n(Open or Closed)</th><th>Using Vendor Y/N</th><th>Request#</th><th>Developer</th><th>Tester</th><th>Test Time</th><th>Test Case</th><th>Validate Plan matches Programming 1 = Yes, 0 = No</th></tr>';
 
-          options.forEach(option => {
-            var optionElement = document.createElement('option');
-            optionElement.textContent = option;
-            select.appendChild(optionElement);
-          });
-        }
-      };
+    for (var i = 0; i < jsonData.length; i++) {
+      var row = jsonData[i];
 
-      xhr.send();
+      var validatePlan = row["Validate Plan matches Programming 1 = Yes, 0 = No"];
+      validatePlan = validatePlan.replace(/\n/g, "<br>");
+
+      htmlData += '<tr><td>' + row["DEPT"] + '</td><td>' + row["BUSINESS"] + '</td><td>' + row["SUB_BUSINESS"] + '</td><td>' + row["KEY_CONTACT"] + '</td><td>' + row["UTILITY"] + '</td><td>' + row["HOLIDAY_DNIS"] + '</td><td>' + row["HOLIDAY_DATE"] + '</td><td>' + row["HOLIDAY_HOURS"] + '</td><td>' + row["HOLIDAY_EXIT_PNT_NUM"] + '</td><td>' + row["EXT_SERVICE_IND"] + '</td><td>' + row["STATUS\n(Open or Closed)"] + '</td><td>' + row["Using Vendor Y/N"] + '</td><td>' + row["Request#"] + '</td><td>' + row["Developer"] + '</td><td>' + row["Tester"] + '</td><td>' + row["Test Time"] + '</td><td>' + row["Test Case"] + '</td><td>' + validatePlan + '</td></tr>';
     }
 
-    function processInput() {
-      var selectedOption = document.getElementById('optionsSelect').value;
-      console.log('Selected option:', selectedOption);
-
-      // Perform further processing with the selected option
-      // ...
-    }
-  </script>
-</head>
-<body onload="loadOptions()">
-  <h1>User Input with Scrolling Options</h1>
-  
-  <form>
-    <label for="optionsSelect">Select an option:</label>
-    <select id="optionsSelect"></select>
-    <br>
-    <button type="button" onclick="processInput()">Submit</button>
-  </form>
-</body>
-</html>
+    table.innerHTML = htmlData;
+  } else {
+    table.innerHTML = 'There is no data in Excel';
+  }
+}
