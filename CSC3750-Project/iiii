@@ -8,7 +8,7 @@ function displayJsonToHtmlTable(jsonData) {
       var row = jsonData[i];
 
       var validatePlan = row["Validate Plan matches Programming 1 = Yes, 0 = No"];
-      if (validatePlan.includes("\n")) {
+      if (validatePlan.indexOf("\n") !== -1) {
         validatePlan = validatePlan.replace(/\n/g, "<br>");
       }
 
