@@ -1,39 +1,39 @@
-function displayJsonToHtmlTable(jsonData) {
-  var table = document.getElementById("display_excel_data");
-
-  if (jsonData.length > 0) {
-    var htmlData = '<tr><th>DEPT</th><th>BUSINESS</th><th>SUB_BUSINESS</th><th>KEY_CONTACT</th><th>UTILITY</th><th>HOLIDAY_DNIS</th><th>HOLIDAY_DATE</th><th>HOLIDAY_HOURS</th><th>HOLIDAY_EXIT_PNT_NUM</th><th>EXT_SERVICE_IND</th><th>STATUS\n(Open or Closed)</th><th>Using Vendor Y/N</th><th>Request#</th><th>Developer</th><th>Tester</th><th>Test Time</th><th>Test Case</th><th>Validate Plan matches Programming 1 = Yes, 0 = No</th></tr>';
-
-    for (var i = 0; i < jsonData.length; i++) {
-      var row = jsonData[i];
-
-      var validatePlan = row["Validate Plan matches Programming 1 = Yes, 0 = No"];
-      if (validatePlan.indexOf("\n") !== -1) {
-        validatePlan = validatePlan.replace(/\n/g, "<br>");
-      }
-
-      htmlData += '<tr><td>' + row["DEPT"] + '</td><td>' + row["BUSINESS"] + '</td><td>' + row["SUB_BUSINESS"] + '</td><td>' + row["KEY_CONTACT"] + '</td><td>' + row["UTILITY"] + '</td><td>' + row["HOLIDAY_DNIS"] + '</td><td>' + row["HOLIDAY_DATE"] + '</td><td>' + row["HOLIDAY_HOURS"] + '</td><td>' + row["HOLIDAY_EXIT_PNT_NUM"] + '</td><td>' + row["EXT_SERVICE_IND"] + '</td><td>' + row["STATUS\n(Open or Closed)"] + '</td><td>' + row["Using Vendor Y/N"] + '</td><td>' + row["Request#"] + '</td><td>' + row["Developer"] + '</td><td>' + row["Tester"] + '</td><td>' + row["Test Time"] + '</td><td>' + row["Test Case"] + '</td><td>' + validatePlan + '</td></tr>';
-    }
-
-    table.innerHTML = htmlData;
-  } else {
-    table.innerHTML = 'There is no data in Excel';
-  }
-}
-
-
-
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Display Excel Data in HTML Table</title>
-    <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
-    <script>
-        // Your JavaScript code that uses the xlsx library goes here
-        // ...
-    </script>
+  <title>Row Highlighting</title>
+  <style>
+    .highlighted {
+      background-color: yellow;
+    }
+  </style>
+  <script>
+    window.onload = function() {
+      var rows = document.getElementsByTagName("tr");
+
+      for (var i = 0; i < rows.length; i++) {
+        rows[i].addEventListener("mouseover", function() {
+          this.classList.add("highlighted");
+        });
+
+        rows[i].addEventListener("mouseout", function() {
+          this.classList.remove("highlighted");
+        });
+      }
+    };
+  </script>
 </head>
 <body>
-    <!-- Your HTML content goes here -->
+  <table>
+    <tr>
+      <td>Row 1</td>
+    </tr>
+    <tr>
+      <td>Row 2</td>
+    </tr>
+    <tr>
+      <td>Row 3</td>
+    </tr>
+  </table>
 </body>
 </html>
