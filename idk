@@ -1,29 +1,45 @@
 function upload() {
   var files = document.getElementById('file_upload').files;
-  
+
   if (files.length == 0) {
     alert("Please choose a file...");
     return;
   }
-  
+
   var filename = files[0].name;
   var extension = filename.substring(filename.lastIndexOf(".")).toUpperCase();
-  
+
   if (extension == '.XLS' || extension == '.XLSX') {
     var reader = new FileReader();
-    
+
     reader.onload = function (e) {
       var data = new Uint8Array(e.target.result);
       var workbook = XLSX.read(data, { type: 'array' });
       var firstSheetName = workbook.SheetNames[0];
       var firstSheet = workbook.Sheets[firstSheetName];
-      
+
       // Use the 'firstSheet' object for further processing
       console.log(firstSheet);
+
+      // Pass the first sheet as an argument to excelFileToJSON()
+      excelFileToJSON(firstSheet);
     };
-    
+
     reader.readAsArrayBuffer(files[0]);
   } else {
     alert("Please select a valid Excel file.");
+  }
+}
+
+// Method to read Excel file and convert it into JSON
+function excelFileToJSON(sheet) {
+  try {
+    // Convert the sheet to JSON
+    var jsonData = XLSX.utils.sheet_to_json(sheet);
+
+    // Display the JSON result into an HTML table
+    displayJsonToHtmlTable(jsonData);
+  } catch (e) {
+    console.error(e);
   }
 }
