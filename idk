@@ -1,54 +1,29 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Excel Search</title>
-    <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
-    <script>
-        function searchExcel() {
-            var userInput = document.getElementById("searchInput").value;
-            
-            var fileInput = document.getElementById("fileInput");
-            var file = fileInput.files[0];
-            var reader = new FileReader();
-            
-            reader.onload = function(e) {
-                var data = new Uint8Array(e.target.result);
-                var workbook = XLSX.read(data, { type: 'array' });
-                
-                var worksheet = workbook.Sheets[workbook.SheetNames[0]];
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
-                
-                var searchResults = [];
-                for (var i = 0; i < jsonData.length; i++) {
-                    if (jsonData[i][0] == userInput) {
-                        searchResults.push(jsonData[i]);
-                    }
-                }
-                
-                var result = document.getElementById("result");
-                if (searchResults.length > 0) {
-                    var resultHtml = "";
-                    for (var j = 0; j < searchResults.length; j++) {
-                        resultHtml += searchResults[j].join(', ') + "<br>";
-                    }
-                    result.innerHTML = resultHtml;
-                } else {
-                    result.innerHTML = 'No matching result found.';
-                }
-            };
-            
-            reader.readAsArrayBuffer(file);
-        }
-    </script>
-</head>
-<body>
-    <h1>Excel Search</h1>
-    <form onsubmit="event.preventDefault(); searchExcel();">
-        <label for="searchInput">Search:</label>
-        <input type="text" id="searchInput" required>
-        <input type="file" id="fileInput" required>
-        <button type="submit">Search</button>
-    </form>
-    <div id="result"></div>
-</body>
-</html>
+function upload() {
+  var files = document.getElementById('file_upload').files;
+  
+  if (files.length == 0) {
+    alert("Please choose a file...");
+    return;
+  }
+  
+  var filename = files[0].name;
+  var extension = filename.substring(filename.lastIndexOf(".")).toUpperCase();
+  
+  if (extension == '.XLS' || extension == '.XLSX') {
+    var reader = new FileReader();
+    
+    reader.onload = function (e) {
+      var data = new Uint8Array(e.target.result);
+      var workbook = XLSX.read(data, { type: 'array' });
+      var firstSheetName = workbook.SheetNames[0];
+      var firstSheet = workbook.Sheets[firstSheetName];
+      
+      // Use the 'firstSheet' object for further processing
+      console.log(firstSheet);
+    };
+    
+    reader.readAsArrayBuffer(files[0]);
+  } else {
+    alert("Please select a valid Excel file.");
+  }
+}
