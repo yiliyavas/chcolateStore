@@ -1,124 +1,45 @@
-function upload() {
-  var files = document.getElementById('file_upload').files;
-
-  if (files.length == 0) {
-    alert("Please choose a file...");
-    return;
-  }
-
-  var filename = files[0].name;
-  var extension = filename.substring(filename.lastIndexOf(".")).toUpperCase();
-
-  if (extension == '.XLS' || extension == '.XLSX') {
-    var reader = new FileReader();
-
-    reader.onload = function (e) {
-      var data = new Uint8Array(e.target.result);
-      var workbook = XLSX.read(data, { type: 'array' });
-      var firstSheetName = workbook.SheetNames[0];
-      var firstSheet = workbook.Sheets[firstSheetName];
-
-      // Use the 'firstSheet' object for further processing
-      console.log(firstSheet);
-
-      // Pass the first sheet as an argument to excelFileToJSON()
-      excelFileToJSON(firstSheet);
-    };
-
-    reader.readAsArrayBuffer(files[0]);
-  } else {
-    alert("Please select a valid Excel file.");
-  }
-}
-
-// Method to read Excel file and convert it into JSON
-function excelFileToJSON(sheet) {
-  try {
-    // Convert the sheet to JSON
-    var jsonData = XLSX.utils.sheet_to_json(sheet);
-
-    // Display the JSON result into an HTML table
-    displayJsonToHtmlTable(jsonData);
-  } catch (e) {
-    console.error(e);
-  }
-}
-
-/////
 function displayJsonToHtmlTable(jsonData) {
-  // Get the reference to the HTML table
-  var table = document.getElementById('json_table');
+  var table = document.getElementById("display_excel_data");
+  table.innerHTML = ""; // Clear existing table content
 
-  // Clear existing table content
-  table.innerHTML = '';
-
-  // Create table header row
-  var headers = Object.keys(jsonData[0]);
-  var headerRow = document.createElement('tr');
-  headers.forEach(function (header) {
-    var th = document.createElement('th');
-    th.textContent = header;
-    headerRow.appendChild(th);
-  });
-  table.appendChild(headerRow);
-
-  // Create table data rows
-  jsonData.forEach(function (row) {
-    var dataRow = document.createElement('tr');
-    headers.forEach(function (header) {
-      var td = document.createElement('td');
-      td.textContent = row[header];
-      dataRow.appendChild(td);
-    });
-    table.appendChild(dataRow);
-  });
-}
-
-//
-// Method to display JSON data in an HTML table
-function displayJsonToHtmlTable(jsonData) {
-  // Clear any existing table content
-  var tableContainer = document.getElementById('table_container');
-  tableContainer.innerHTML = '';
-
-  // Create a new table element
-  var table = document.createElement('table');
-  table.classList.add('json-table');
-
-  // Create table header
-  var thead = document.createElement('thead');
-  var headerRow = document.createElement('tr');
-
-  // Get the keys from the first object in the JSON data
   var keys = Object.keys(jsonData[0]);
 
-  // Create table header cells using the keys
-  keys.forEach(function (key) {
-    var th = document.createElement('th');
-    th.textContent = key;
-    headerRow.appendChild(th);
-  });
+  if (keys.length > 0) {
+    // Create table header row from the second row (index 1)
+    var headerRow = document.createElement("tr");
+    for (var i = 0; i < keys.length; i++) {
+      var th = document.createElement("th");
+      th.textContent = keys[i];
+      headerRow.appendChild(th);
+    }
+    table.appendChild(headerRow);
 
-  thead.appendChild(headerRow);
-  table.appendChild(thead);
+    // Create table data rows from the third row (index 2) onwards
+    for (var i = 1; i < jsonData.length; i++) {
+      var row = jsonData[i];
+      var dataRow = document.createElement("tr");
+      for (var j = 0; j < keys.length; j++) {
+        var cell = document.createElement("td");
+        cell.textContent = row[keys[j]];
+        dataRow.appendChild(cell);
+      }
 
-  // Create table body
-  var tbody = document.createElement('tbody');
+      // Create a button for each row
+      var button = document.createElement("button");
+      button.textContent = "Click";
+      button.addEventListener("click", function () {
+        // Handle button click event for the corresponding row
+        handleButtonClick(row);
+      });
 
-  // Iterate through each object in the JSON data
-  jsonData.forEach(function (item) {
-    var row = document.createElement('tr');
+      // Append the button to the row
+      var buttonCell = document.createElement("td");
+      buttonCell.appendChild(button);
+      dataRow.appendChild(buttonCell);
 
-    // Iterate through each key and create table cells
-    keys.forEach(function (key) {
-      var cell = document.createElement('td');
-      cell.textContent = item[key];
-      row.appendChild(cell);
-    });
-
-    tbody.appendChild(row);
-  });
-
-  table.appendChild(tbody);
-  tableContainer.appendChild(table);
+      table.appendChild(dataRow);
+    }
+  } else {
+    table.innerHTML = "There is no data in Excel";
+  }
 }
