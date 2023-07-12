@@ -74,3 +74,51 @@ function displayJsonToHtmlTable(jsonData) {
   });
 }
 
+//
+// Method to display JSON data in an HTML table
+function displayJsonToHtmlTable(jsonData) {
+  // Clear any existing table content
+  var tableContainer = document.getElementById('table_container');
+  tableContainer.innerHTML = '';
+
+  // Create a new table element
+  var table = document.createElement('table');
+  table.classList.add('json-table');
+
+  // Create table header
+  var thead = document.createElement('thead');
+  var headerRow = document.createElement('tr');
+
+  // Get the keys from the first object in the JSON data
+  var keys = Object.keys(jsonData[0]);
+
+  // Create table header cells using the keys
+  keys.forEach(function (key) {
+    var th = document.createElement('th');
+    th.textContent = key;
+    headerRow.appendChild(th);
+  });
+
+  thead.appendChild(headerRow);
+  table.appendChild(thead);
+
+  // Create table body
+  var tbody = document.createElement('tbody');
+
+  // Iterate through each object in the JSON data
+  jsonData.forEach(function (item) {
+    var row = document.createElement('tr');
+
+    // Iterate through each key and create table cells
+    keys.forEach(function (key) {
+      var cell = document.createElement('td');
+      cell.textContent = item[key];
+      row.appendChild(cell);
+    });
+
+    tbody.appendChild(row);
+  });
+
+  table.appendChild(tbody);
+  tableContainer.appendChild(table);
+}
