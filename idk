@@ -43,3 +43,34 @@ function excelFileToJSON(sheet) {
     console.error(e);
   }
 }
+
+/////
+function displayJsonToHtmlTable(jsonData) {
+  // Get the reference to the HTML table
+  var table = document.getElementById('json_table');
+
+  // Clear existing table content
+  table.innerHTML = '';
+
+  // Create table header row
+  var headers = Object.keys(jsonData[0]);
+  var headerRow = document.createElement('tr');
+  headers.forEach(function (header) {
+    var th = document.createElement('th');
+    th.textContent = header;
+    headerRow.appendChild(th);
+  });
+  table.appendChild(headerRow);
+
+  // Create table data rows
+  jsonData.forEach(function (row) {
+    var dataRow = document.createElement('tr');
+    headers.forEach(function (header) {
+      var td = document.createElement('td');
+      td.textContent = row[header];
+      dataRow.appendChild(td);
+    });
+    table.appendChild(dataRow);
+  });
+}
+
